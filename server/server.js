@@ -6,6 +6,10 @@ const connectDatabase = require('./config/db');
 require('dotenv').config({path: 'config/config.env'});
 const path = require('path')
 const app = express();
+app.use(cors({
+    origin: "*",
+    optionsSuccessStatus: 200
+}))
 
 const _dirname = path.dirname('')
 
@@ -21,10 +25,6 @@ app.get("/*",function(req,res){
         }
     }
 })
-
-
-
-app.use(cors());
 
 app.set("view engine","ejs");
 app.use(express.json());

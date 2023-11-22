@@ -22,13 +22,16 @@ const Login = () => {
   };
   const sendRequest = async (type = "login") => {
     const res = await axios
-      .post(`http://localhost:4000/api/users/${type}`, {
+      .post(`http://16.171.227.242/api/users/${type}`, {
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,
       })
       .catch((err) => console.log(err));
 
+    if(res.data){
+      localStorage.setItem("login",'true')
+    }
 
     const data =  res.data;
     console.log("return");

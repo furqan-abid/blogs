@@ -16,6 +16,7 @@ const Header = () => {
     const theme = isDark ? darkTheme : lightTheme
     
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const login = localStorage.getItem('login')
     const [value, setValue] = useState();
 
   return <AppBar 
@@ -26,7 +27,7 @@ const Header = () => {
           <Typography variant='h4'>
               BlogsApp
           </Typography>
-         { isLoggedIn && <Box display="flex" marginLeft={"auto"} marginRight="auto">
+         { login==='true' && <Box display="flex" marginLeft={"auto"} marginRight="auto">
             <Tabs
               textColor="inherit"
               value={value}
@@ -38,12 +39,12 @@ const Header = () => {
                 to="/blogs"
                 label="All Blogs"
               />
-              <Tab
+              {/* <Tab
                 //className={classes.font}
                 LinkComponent={Link}
                 to="/myBlogs"
                 label="My Blogs"
-              />
+              /> */}
               <Tab
                 //className={classes.font}
                 LinkComponent={Link}
@@ -61,14 +62,14 @@ const Header = () => {
               >
                   Login
               </Button>
-              <Button 
+              {/* <Button 
               LinkComponent={Link}
               to="login/"
                sx={{ margin: 1, fontWeight : 'bold' , color:"white" , borderRadius: 10 }}
               >
                    
                   SignUp
-              </Button>
+              </Button> */}
               </>
               )}
 

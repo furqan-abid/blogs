@@ -54,7 +54,7 @@ const UserBlogs = () => {
 
   const sendRequest = async () => {
     const res = await axios
-      .get(`http://localhost:4000/api/blogs/user/${id}`)
+      .get(`http://16.171.227.242/api/blogs/user/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
@@ -65,7 +65,7 @@ const UserBlogs = () => {
   }, []);
 
   const handleDelete = (blogId) => {
-    axios.delete(`http://localhost:4000/api/blogs/${blogId}`).then(() => {
+    axios.delete(`http://16.171.227.242/api/blogs/${blogId}`).then(() => {
       sendRequest().then((data) => setUser(data.user));
     });
   };
