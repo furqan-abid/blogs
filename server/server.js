@@ -14,7 +14,7 @@ const buildPath = path.join(_dirname,"../client/build")
 app.use(express.static(buildPath))
 
 app.get("/*",function(req,res){
-    res.sendFile(__dirname,"../client/build/index.html"),
+    res.sendFile(path.join(buildPath, 'index.html')),
     function(err){
         if(err){
             res.status(500).send(err)
@@ -50,7 +50,7 @@ process.on('uncaughtException', function(err) {
 //connecting database
 connectDatabase()
 
-const server= app.listen(process.env.Port,()=>{
+const server= app.listen(4000,()=>{
     console.log(`server is runing on ${process.env.Port}`);
 })
 
