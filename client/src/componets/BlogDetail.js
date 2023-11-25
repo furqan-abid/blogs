@@ -51,7 +51,7 @@ const BlogDetail = () => {
     console.log(inputs);
     sendRequest()
       .then((data) => console.log(data))
-      .then(() => navigate("/myBlogs/"));
+      .then(() => navigate("/blogs/"));
   };
 
   return (

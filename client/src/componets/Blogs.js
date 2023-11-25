@@ -22,7 +22,7 @@ const Blogs = () => {
         blogs.map((blog, index) => (
           <Blog
             id={blog._id}
-            isUser={localStorage.getItem("userId") === blog.user._id}
+            isUser={localStorage.getItem("userId") === blog.user}
             title={blog.title}
             desc={blog.desc}
             img={blog.img}

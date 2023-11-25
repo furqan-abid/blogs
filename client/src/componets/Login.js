@@ -30,9 +30,9 @@ const Login = () => {
       })
       .catch((err) => console.log(err));
 
-      localStorage.setItem("login",'true')
 
-    const data =  res.data;
+    const data = await res.data;
+    console.log("return");
     console.log(data);
     return data;
   };

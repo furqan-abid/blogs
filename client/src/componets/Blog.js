@@ -19,7 +19,7 @@ const Blogs = ({ title, desc, img, user, isUser, id }) => {
  const classes = useStyles();
   const navigate = useNavigate();
   const handleEdit = () => {
-    navigate(`/blogs/${id}`);
+    navigate(`/myBlogs/${id}`);
   };
   const deleteRequest = async () => {
     const res = await axios
@@ -30,10 +30,14 @@ const Blogs = ({ title, desc, img, user, isUser, id }) => {
   };
   const handleDelete = () => {
     deleteRequest()
-      .then(() => window.location.reload(true))
-      .then(() => navigate("/blogs"));
-      
+      .then(() => navigate("/"))
+      .then(() => navigate("/blogs"))
+      .finally(()=>{
+
+      window.location.reload()
+      })
   };
+  
   return (
     <div>
       {" "}
@@ -49,7 +53,7 @@ const Blogs = ({ title, desc, img, user, isUser, id }) => {
           },
         }}
       >
-        
+        {isUser && (
           <Box display="flex">
             {/* <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
               <ModeEditOutlineIcon color="warning" />
@@ -58,7 +62,7 @@ const Blogs = ({ title, desc, img, user, isUser, id }) => {
               <DeleteForeverIcon color="error" />
             </IconButton>
           </Box>
-        
+        )}
         <CardHeader
           avatar={
             <Avatar

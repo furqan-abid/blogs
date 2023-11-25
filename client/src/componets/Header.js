@@ -15,10 +15,9 @@ const Header = () => {
     const isDark = useSelector((state)=> state.theme.isDarkmode)
     const theme = isDark ? darkTheme : lightTheme
     
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    const login = localStorage.getItem('login')
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const [value, setValue] = useState();
-
+  console.log(isLoggedIn,"is log in");
   return <AppBar 
   position='sticky'
   sx={{ background:  `${theme.bg}` }}>
@@ -27,7 +26,7 @@ const Header = () => {
           <Typography variant='h4'>
               BlogsApp
           </Typography>
-         { login==='true' && <Box display="flex" marginLeft={"auto"} marginRight="auto">
+         { isLoggedIn && <Box display="flex" marginLeft={"auto"} marginRight="auto">
             <Tabs
               textColor="inherit"
               value={value}
