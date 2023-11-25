@@ -5,6 +5,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyles } from "./utils";
+import { DB_URI } from "../config";
 
 const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 const AddBlogs = () => {
@@ -23,7 +24,7 @@ const AddBlogs = () => {
   };
   const sendRequest = async () => {
     const res = await axios
-      .post("http://16.171.227.242/api/blogs/add", {
+      .post(`${DB_URI}/blogs/add`, {
         title: inputs.title,
         desc: inputs.description,
         img: inputs.imageURL,

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store";
 import { useNavigate } from "react-router-dom";
+import { DB_URI } from "../config";
 
 const Login = () => {
   const naviagte = useNavigate();
@@ -22,19 +23,16 @@ const Login = () => {
   };
   const sendRequest = async (type = "login") => {
     const res = await axios
-      .post(`http://16.171.227.242/api/users/${type}`, {
+      .post(`${DB_URI}/users/${type}`, {
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,
       })
       .catch((err) => console.log(err));
 
-    if(res.data){
       localStorage.setItem("login",'true')
-    }
 
     const data =  res.data;
-    console.log("return");
     console.log(data);
     return data;
   };

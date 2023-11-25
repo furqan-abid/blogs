@@ -143,10 +143,6 @@ const deleteBlog = async (req, res, next) => {
             return res.status(404).json({ message: "Blog not found" });
         }
 
-        // Remove the blog from the user's blogs array
-        const user = blog.user;
-        user.blogs.pull(blog);
-        await user.save();
 
         return res.status(200).json({ message: "Successfully deleted" });
 

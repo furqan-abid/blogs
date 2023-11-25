@@ -14,23 +14,25 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useStyles } from "./utils";
+import { DB_URI } from "../config";
 const Blogs = ({ title, desc, img, user, isUser, id }) => {
  const classes = useStyles();
   const navigate = useNavigate();
   const handleEdit = () => {
-    navigate(`/myBlogs/${id}`);
+    navigate(`/blogs/${id}`);
   };
   const deleteRequest = async () => {
     const res = await axios
-      .delete(`http://16.171.227.242/api/blogs/${id}`)
+      .delete(`${DB_URI}/blogs/delete/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
   };
   const handleDelete = () => {
     deleteRequest()
-      .then(() => navigate("/"))
+      .then(() => window.location.reload(true))
       .then(() => navigate("/blogs"));
+      
   };
   return (
     <div>
@@ -47,16 +49,16 @@ const Blogs = ({ title, desc, img, user, isUser, id }) => {
           },
         }}
       >
-        {isUser && (
+        
           <Box display="flex">
-            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
+            {/* <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
               <ModeEditOutlineIcon color="warning" />
-            </IconButton>
+            </IconButton> */}
             <IconButton onClick={handleDelete}>
               <DeleteForeverIcon color="error" />
             </IconButton>
           </Box>
-        )}
+        
         <CardHeader
           avatar={
             <Avatar

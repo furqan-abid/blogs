@@ -17,14 +17,7 @@ const buildPath = path.join(_dirname,"../client/build")
 
 app.use(express.static(buildPath))
 
-app.get("/*",function(req,res){
-    res.sendFile(__dirname,"../client/build/index.html"),
-    function(err){
-        if(err){
-            res.status(500).send(err)
-        }
-    }
-})
+
 
 app.set("view engine","ejs");
 app.use(express.json());
@@ -35,6 +28,21 @@ app.use("/api/blogs",blogRouter);
 app.use("/api",(req,res,next) =>{
     res.send("hello")
 })
+
+// app.use(express.static(path.resolve(__dirname,`../client/build`)))
+app.get(/^(?!\/api\/)/,(_,res) => {
+  res.sendFile(path.resolve('../client/build/index.html'))
+})
+
+
+// app.get("/*",function(req,res){
+//     res.sendFile(__dirname,"../client/build/index.html"),
+//     function(err){
+//         if(err){
+//             res.status(500).send(err)
+//         }
+//     }
+// })
 
 //define port
 
